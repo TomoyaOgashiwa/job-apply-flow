@@ -2,9 +2,8 @@
 import { defineConfig, globalIgnores } from "eslint/config";
 import js from "@eslint/js";
 import tseslint from "typescript-eslint";
-import prettier from "eslint-config-prettier";
+import prettier from "eslint-plugin-prettier/recommended";
 
-// 👇 Bring in the compat bridge for legacy .eslintrc-style configs
 import { FlatCompat } from "@eslint/eslintrc";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
@@ -36,5 +35,5 @@ export default defineConfig([
   },
 
   // keep Prettier LAST to disable conflicting stylistic rules
-  prettier, 
+  prettier,
 ]);
