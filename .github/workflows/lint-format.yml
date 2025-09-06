@@ -1,0 +1,45 @@
+name: Lint and Format Check
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+jobs:
+  lint-and-format:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        name: Install pnpm
+        with:
+          version: 10
+          run_install: false
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: "pnpm"
+  
+      - name: Verify pnpm
+        run: pnpm --version
+  
+      - name: Install Dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Install Dependencies
+        run: pnpm install
+
+      - name: Run ESLint
+        run: pnpm run lint
+
+      - name: Run Prettier Check
+        run: pnpm run format
+
+      - name: Run Spell Check
+        run: pnpm run spell

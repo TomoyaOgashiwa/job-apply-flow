@@ -5,19 +5,51 @@
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build --turbopack",
-    "start": "next start"
+    "start": "next start",
+    "lint": "eslint \"**/*.{ts,tsx,js,jsx}\"",
+    "lint:fix": "eslint \"**/*.{ts,tsx,js,jsx}\" --fix",
+    "format": "prettier --write \"**/*.{ts,tsx,js,jsx}\"",
+    "spell": "cspell '**/*.{js,ts,astro,json,md}'",
+    "prisma-migrate": "pnpx prisma migrate dev",
+    "prisma-seed": "pnpx prisma db seed",
+    "prisma-format": "prisma format",
+    "start-local-db": "pnpx supabase start",
+    "stop-local-db": "pnpx supabase stop",
+    "supabase-types": "pnpx supabase gen types typescript --local --schema public > type/database/supabaseType.ts",
+    "migrate-and-gen": "pnpm run prisma-migrate && pnpm run supabase-types"
   },
   "dependencies": {
+    "@prisma/client": "^6.15.0",
+    "@supabase/ssr": "^0.7.0",
+    "@supabase/supabase-js": "^2.56.0",
+    "@tanstack/react-query": "^5.85.5",
+    "clsx": "^2.1.1",
+    "eslint-plugin-prettier": "^5.5.4",
+    "next": "15.5.2",
+    "postcss": "^8.5.6",
     "react": "19.1.0",
     "react-dom": "19.1.0",
-    "next": "15.5.2"
+    "tailwind-merge": "^3.3.1",
+    "zod": "^4.1.4",
+    "zod-openapi": "^5.4.0"
   },
   "devDependencies": {
-    "typescript": "^5",
+    "@eslint/eslintrc": "^3.3.1",
+    "@eslint/js": "^9.35.0",
+    "@next/eslint-plugin-next": "^15.5.2",
+    "@tailwindcss/postcss": "^4.1.12",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
-    "@tailwindcss/postcss": "^4",
-    "tailwindcss": "^4"
+    "cspell": "^9.2.1",
+    "eslint": "^9.35.0",
+    "eslint-config-prettier": "^10.1.8",
+    "openapi-typescript": "^7.9.1",
+    "orval": "^7.11.2",
+    "prettier": "^3.6.2",
+    "prisma": "^6.15.0",
+    "tailwindcss": "^4.1.12",
+    "typescript": "^5",
+    "typescript-eslint": "^8.42.0"
   }
 }

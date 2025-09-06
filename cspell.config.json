@@ -1,0 +1,44 @@
+{
+	"version": "0.2",
+	"language": "en",
+	"allowCompoundWords": true,
+	"useGitignore": true,
+	"words": [
+		"tailwindcss",
+		"eslint",
+		"pnpm",
+		"tsconfig",
+		"clsx",
+		"props",
+		"tsx",
+		"zod",
+		"zustand",
+		"lucide",
+	],
+	"ignorePaths": [
+		"node_modules",
+		"dist",
+		".husky",
+		"build",
+		"coverage",
+		"**/*.d.ts",
+		"pnpm-lock.yaml",
+		"package-lock.json",
+		".vscode",
+		".git",
+		".next",
+		".vercel",
+		"next-env.d.ts",
+		"type/database/supabaseType.ts",
+	],
+	"enableFiletypes": ["js", "ts", "tsx", "astro", "json", "md", "yml", "yaml"],
+	"dictionaries": ["typescript", "node", "softwareTerms"],
+	"dictionaryDefinitions": [],
+	"ignoreRegExpList": [
+		"/\\*\\*.*\\*/", // JSDoc-style comments
+		"/<[^>]*>/", // HTML tags
+		"/https?:[^\\s]+/", // URLs
+		"/[\\w.-]+@[\\w.-]+/", // emails
+		"/`[^`]*`/" // inline code in markdown
+	]
+}

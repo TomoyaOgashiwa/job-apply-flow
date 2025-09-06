@@ -1,0 +1,142 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  ADMIN
+  USER
+}
+
+// Application Status
+enum ApplicationStatus {
+  PROCESSING
+  APPROVED
+  FAILED
+  NO_RESPONSE
+}
+
+// Interview Status(be able to skip round interview)
+enum InterviewStatus {
+  SENT_RESUME
+  INTERVIEW
+  OFFER_INTERVIEW
+  OFFER_ACCEPTED
+  OFFER_REJECTED
+}
+
+enum JobType {
+  FULL_TIME
+  PART_TIME
+  CONTRACT
+  INTERNSHIP
+  FREELANCE
+  VOLUNTEER
+  TEMPORARY
+  OTHER
+}
+
+enum PositionLevel {
+  JUNIOR
+  INTERMEDIATE
+  SENIOR
+  STAFF
+  LEAD
+  CTO
+  VP
+  DIRECTOR
+  OTHER
+}
+
+enum PositionType {
+  FULL_STACK
+  FRONTEND
+  BACKEND
+  MOBILE
+  DATA_SCIENCE
+  AI
+  SECURITY
+  DEVOPS
+  OTHER
+}
+
+model User {
+  id String @id @unique @default(uuid())
+  email String @unique
+  name String @db.VarChar(20)
+  role Role @default(USER)
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  applications Application[]
+}
+
+
+model Company {
+  id String @id @unique @default(uuid())
+  name String
+  homepage_url String
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  applications Application[]
+}
+
+model Resume {
+  id String @id @unique @default(uuid())
+  name String
+  url String
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  applications Application[]
+}
+
+model Application {
+  id String @id @unique @default(uuid())
+  user_id String
+  company_id String
+  resume_id String
+  linkedIn_Url String?
+  apply_site_url String?
+  job_title String
+  job_type JobType
+  position_level PositionLevel
+  position_type PositionType
+  interview_status InterviewStatus @default(SENT_RESUME)
+  status ApplicationStatus @default(PROCESSING)
+  comments String?
+  failed_reason String?
+  failed_at DateTime?
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+  @@index([user_id])
+
+  user User @relation(fields: [user_id], references: [id])
+  company Company @relation(fields: [company_id], references: [id])
+  resume Resume @relation(fields: [resume_id], references: [id])
+  interview Interview[]
+}
+
+model Interview {
+  id String @id @unique @default(uuid())
+  application_id String
+  interview_date DateTime
+  interview_location String?
+  interview_notes String?
+  interview_feedback String?
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  application Application @relation(fields: [application_id], references: [id])
+}
