@@ -70,10 +70,11 @@ enum PositionType {
   OTHER
 }
 
+// If @id is defined, we don't need to define @unique for the field
 model User {
-  id String @id @unique @default(uuid())
+  id String @id @default(uuid())
   email String @unique
-  name String @db.VarChar(20)
+  name String @db.VarChar(50)
   role Role @default(USER)
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
@@ -83,7 +84,7 @@ model User {
 
 
 model Company {
-  id String @id @unique @default(uuid())
+  id String @id @default(uuid())
   name String
   homepage_url String
   created_at DateTime @default(now())
@@ -93,7 +94,7 @@ model Company {
 }
 
 model Resume {
-  id String @id @unique @default(uuid())
+  id String @id @default(uuid())
   name String
   url String
   created_at DateTime @default(now())
@@ -103,7 +104,7 @@ model Resume {
 }
 
 model Application {
-  id String @id @unique @default(uuid())
+  id String @id @default(uuid())
   user_id String
   company_id String
   resume_id String
@@ -129,7 +130,7 @@ model Application {
 }
 
 model Interview {
-  id String @id @unique @default(uuid())
+  id String @id @default(uuid())
   application_id String
   interview_date DateTime
   interview_location String?
