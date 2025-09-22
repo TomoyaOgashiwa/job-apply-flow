@@ -1,24 +1,42 @@
-import { login, loginWithGoogle, signup } from "./action/login";
+import Link from "next/link";
+import { login, loginWithGoogle } from "./action/login";
+import { Button } from "@/components/ui/button";
 
 export default function LoginPage() {
   return (
-    <div className="flex flex-col gap-4">
-      <h2>Login</h2>
+    <div className="border border-gray-200 rounded-md p-8 flex flex-col gap-6 w-2/3 m-auto">
+      <h2 className="text-xl font-bold">Login</h2>
       <form className="flex flex-col gap-4">
-        <label className="flex gap-2" htmlFor="email">
+        <label className="flex flex-col gap-2" htmlFor="email">
           Email:
-          <input id="email" name="email" type="email" required />
+          <input
+            id="email"
+            name="email"
+            type="email"
+            required
+            placeholder="E.G. example@google.com"
+          />
         </label>
-        <label className="flex gap-2" htmlFor="password">
+        <label className="flex flex-col gap-2" htmlFor="password">
           Password:
-          <input id="password" name="password" type="password" required />
+          <input
+            id="password"
+            name="password"
+            type="password"
+            required
+            minLength={8}
+            placeholder="E.G. paSSw0rd"
+          />
         </label>
-        <button formAction={login}>Log in</button>
-        <button formAction={signup}>Sign up</button>
+        <Button formAction={login}>Log in</Button>
+        <Button onClick={loginWithGoogle}>Login with Google</Button>
       </form>
-      <button onClick={loginWithGoogle} type="button">
-        Login with Google
-      </button>
+      <p className="text-sm text-center">
+        Don’t have an account?{" "}
+        <Link className="text-blue-500" href="/auth/signup">
+          Sign up
+        </Link>
+      </p>
     </div>
   );
 }

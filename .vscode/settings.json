@@ -1,24 +1,26 @@
 {
-  "deno.enablePaths": [
-    "supabase/functions"
-  ],
-  "deno.lint": true,
-  "deno.unstable": [
-    "bare-node-builtins",
-    "byonm",
-    "sloppy-imports",
-    "unsafe-proto",
-    "webgpu",
-    "broadcast-channel",
-    "worker-options",
-    "cron",
-    "kv",
-    "ffi",
-    "fs",
-    "http",
-    "net"
-  ],
-  "[typescript]": {
-    "editor.defaultFormatter": "denoland.vscode-deno"
-  }
+  // 保存時にフォーマット有効化
+  "editor.formatOnSave": true,
+
+  // フォーマッタを Prettier に固定（グローバル）
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+
+  // ESLint はフォーマッタとしては使わない
+  "eslint.format.enable": false,
+
+  // 代わりに保存時に ESLint の自動修正だけ実行
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
+
+  // Prettier は設定ファイルがある時だけ走らせる（デフォルト整形を防止）
+  "prettier.requireConfig": true,
+
+  // 言語ごとに上書きされないよう保険（必要なら）
+  "[javascript]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
+  "[typescript]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
+  "[javascriptreact]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
+  "[typescriptreact]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
+  "[html]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
+  "[json]": { "editor.defaultFormatter": "esbenp.prettier-vscode" }
 }
