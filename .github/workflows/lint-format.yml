@@ -1,14 +1,16 @@
 name: Lint and Format Check
 
 on:
-  pull_request:
   push:
-    branches:
-      - main
+    branches: [main, development]
+  pull_request:
+    branches: [main, development]
 
 jobs:
   lint-and-format:
     runs-on: ubuntu-latest
+    env:
+      CI: true
 
     steps:
       - name: Checkout Repository
