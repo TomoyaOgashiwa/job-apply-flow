@@ -1,22 +1,22 @@
 {
-  // 保存時にフォーマット有効化
+  // Enable formatting on save
   "editor.formatOnSave": true,
 
-  // フォーマッタを Prettier に固定（グローバル）
+  // Set Prettier as the default formatter (global)
   "editor.defaultFormatter": "esbenp.prettier-vscode",
 
-  // ESLint はフォーマッタとしては使わない
+  // Do not use ESLint as a formatter
   "eslint.format.enable": false,
 
-  // 代わりに保存時に ESLint の自動修正だけ実行
+  // Instead, only run ESLint auto-fix on save
   "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": true
+    "source.fixAll.eslint": "explicit"
   },
 
-  // Prettier は設定ファイルがある時だけ走らせる（デフォルト整形を防止）
+  // Run Prettier only when a config file exists (prevent default formatting)
   "prettier.requireConfig": true,
 
-  // 言語ごとに上書きされないよう保険（必要なら）
+  // Ensure formatter is not overridden per language (safety measure if needed)
   "[javascript]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
   "[typescript]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
   "[javascriptreact]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
