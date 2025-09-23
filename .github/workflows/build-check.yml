@@ -1,0 +1,54 @@
+name: Build Check
+
+# Run this workflow on pushes to main and on pull requests
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  build-check:
+    runs-on: ubuntu-latest   # Use GitHub-hosted Ubuntu VM
+    env:
+      CI: true               # Ensure commands run in CI mode
+
+    steps:
+      # -------------------------
+      # Get the source code
+      # -------------------------
+      # By default, GitHub gives you an empty VM with no project files.
+      # This "checkout" step pulls (clones) your repository into the VM,
+      # so later steps can actually run against your source code
+      # (package.json, pnpm-lock.yaml, etc.).
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # Install pnpm itself (use official pnpm action)
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10
+          run_install: false    # Don't auto-install yet (we'll do it below)
+
+      # Setup Node.js runtime
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'    # Specify Node version
+          cache: 'pnpm'         # Enable caching for pnpm dependencies
+
+      # -------------------------
+      # Install dependencies
+      # -------------------------
+      # Runs `pnpm install` to install all dependencies listed in package.json.
+      # The flag `--frozen-lockfile` enforces that:
+      #   - pnpm-lock.yaml must match package.json exactly
+      #   - if there’s any mismatch, the build fails
+      # This is important because it prevents "it works locally but not in CI"
+      # by forcing lockfile consistency across environments.
+      - name: Install deps (frozen lockfile)
+        run: pnpm install --frozen-lockfile
+
+      # Run the build (main build check step)
+      - name: Build
+        run: pnpm run build
