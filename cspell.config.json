@@ -14,6 +14,13 @@
 		"zod",
 		"zustand",
 		"lucide",
+		"shadcn",
+		"sonner",
+		"nextjs",
+		"react",
+		"typescript",
+		"javascript",
+		"json",
 	],
 	"ignorePaths": [
 		"node_modules",
