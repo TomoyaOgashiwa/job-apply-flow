@@ -21,6 +21,7 @@
 		"typescript",
 		"javascript",
 		"json",
+		"treeifyError"
 	],
 	"ignorePaths": [
 		"node_modules",
