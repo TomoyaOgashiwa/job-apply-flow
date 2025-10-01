@@ -1,6 +1,6 @@
 import { createServerClient } from "@/libs/supabase/server";
 import { redirect } from "next/navigation";
-import Header from "./_components/header";
+import Header from "./components/header";
 
 export default async function RootLayout({
   children,
