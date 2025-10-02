@@ -44,3 +44,5 @@ prisma/migrations/
 
 *storybook.log
 storybook-static
+
+.cursor

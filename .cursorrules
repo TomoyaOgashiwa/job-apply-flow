@@ -1,0 +1,124 @@
+
+## Coding Standards
+
+### React Server Components
+- Default to Server Components unless client-side features are needed
+- Use `"use client"` directive only for:
+  - Event handlers (onClick, onChange, etc.)
+  - Browser APIs (localStorage, window, etc.)
+  - React hooks (useState, useEffect, etc.)
+  - Third-party libraries requiring client-side rendering
+
+### Server Actions
+- Place Server Actions in `action/` directories within route folders
+- Use `"use server"` directive at the top of action files
+- Handle form submissions and data mutations
+- Return proper error handling and validation
+
+### Component Patterns
+- Use TypeScript interfaces for props
+- Implement proper error boundaries
+- Follow shadcn/ui component patterns
+- Use `cn()` utility for conditional classes
+- Export components as named exports
+
+### Database & Authentication
+- Use Prisma for database operations
+- Implement Supabase SSR for authentication
+- Use proper TypeScript types from generated Prisma client
+- Handle authentication state in Server Components
+
+## Code Quality
+
+### TypeScript
+- Use strict TypeScript configuration
+- Define proper interfaces and types
+- Use path aliases (`@/*` for root directory)
+- Avoid `any` types, use proper typing
+
+### Styling
+- Use Tailwind CSS with shadcn/ui components
+- Follow mobile-first responsive design
+- Use CSS variables for theming
+- Implement proper dark mode support
+
+### Performance
+- Optimize images with Next.js Image component
+- Use proper loading states and error handling
+- Implement proper caching strategies
+- Use React Query for client-side data fetching
+
+### Security
+- Validate all inputs with Zod schemas
+- Implement proper authentication checks
+- Use Server Actions for sensitive operations
+- Follow Next.js security best practices
+
+## Development Workflow
+
+### Scripts
+- `pnpm dev` - Start development server with Turbopack
+- `pnpm build` - Build for production
+- `pnpm lint` - Run ESLint
+- `pnpm format` - Format code with Prettier
+- `pnpm prisma-migrate` - Run database migrations
+- `pnpm supabase-types` - Generate TypeScript types
+
+### Git Conventions
+- Use conventional commit messages
+- Keep commits focused and atomic
+- Use descriptive branch names
+- Review code before merging
+
+## Best Practices
+
+### Component Design
+- Keep components small and focused
+- Use composition over inheritance
+- Implement proper prop interfaces
+- Use React.memo for performance optimization when needed
+
+### Data Fetching
+- Use Server Components for initial data loading
+- Use React Query for client-side data fetching
+- Implement proper loading and error states
+- Use Server Actions for mutations
+
+### Error Handling
+- Implement error boundaries
+- Use proper error pages (error.tsx)
+- Handle authentication errors gracefully
+- Provide meaningful error messages
+
+### Accessibility
+- Use semantic HTML elements
+- Implement proper ARIA attributes
+- Ensure keyboard navigation
+- Test with screen readers
+
+## File Naming Conventions
+- Use kebab-case for file names
+- Use PascalCase for component names
+- Use camelCase for function and variable names
+- Use UPPER_CASE for constants
+
+## Import Organization
+1. React and Next.js imports
+2. Third-party library imports
+3. Internal imports (components, utils, types)
+4. Relative imports
+5. Type-only imports at the end
+
+## Comments and Documentation
+- Use JSDoc for complex functions
+- Comment non-obvious business logic
+- Keep comments up to date
+- Use TypeScript for self-documenting code
+
+## Testing Strategy
+- Write unit tests for utility functions
+- Test Server Actions with proper mocking
+- Use integration tests for critical user flows
+- Test accessibility with automated tools
+
+Remember: Always prioritize Server Components over Client Components, use Server Actions for data mutations, and follow shadcn/ui patterns for consistent UI components.
