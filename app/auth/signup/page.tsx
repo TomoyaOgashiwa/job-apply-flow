@@ -16,7 +16,7 @@ export default function SignupPage() {
       </div>
       <p className="text-sm text-center">
         Do you have an account?{" "}
-        <Link className="text-blue-500" href="/auth/signup">
+        <Link className="text-blue-500" href="/auth/login">
           Login
         </Link>
       </p>

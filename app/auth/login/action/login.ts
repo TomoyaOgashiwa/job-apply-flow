@@ -45,6 +45,7 @@ export async function login(
   // 2) Supabase auth
   const supabase = await createServerClient();
   const { error } = await supabase.auth.signInWithPassword(parsed.data);
+  console.log("supabase", error);
 
   // Return Supabase error (e.g., invalid credentials) without redirect
   if (error) {

@@ -12,7 +12,6 @@ const initialState: SignupState = {
 };
 
 export default function SignupForm() {
-  // React 19: useActionState returns [state, action, isPending]
   const [state, formAction, isPending] = useActionState(signup, initialState);
 
   return (

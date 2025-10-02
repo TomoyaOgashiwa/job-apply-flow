@@ -1,4 +1,4 @@
-import { cn } from "@/lib/utils";
+import { cn } from "@/libs/utils";
 import { createElement, ElementType } from "react";
 
 export default function Heading({

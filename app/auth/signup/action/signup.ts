@@ -3,6 +3,7 @@
 import { redirect } from "next/navigation";
 import { z } from "zod";
 import { createServerClient } from "@/libs/supabase/server";
+import { prisma } from "@/libs/prisma";
 
 const SignupSchema = z
   .object({
@@ -16,7 +17,7 @@ const SignupSchema = z
   .superRefine((data, ctx) => {
     if (data.password !== data.confirmPassword) {
       ctx.addIssue({
-        path: ["confirmPassword", "password"],
+        path: ["confirmPassword"],
         code: "custom",
         message: "Passwords do not match",
       });
@@ -42,7 +43,7 @@ export type SignupState = {
 
 // Server Action for email/password login
 export async function signup(
-  prevState: SignupState,
+  _prevState: SignupState,
   formData: FormData,
 ): Promise<SignupState> {
   const raw = {
@@ -52,7 +53,6 @@ export async function signup(
     confirmPassword: formData.get("confirmPassword"),
   };
 
-  // 1) Zod validation (show per-field errors)
   const parsed = SignupSchema.safeParse(raw);
   if (!parsed.success) {
     const errorTree = z.treeifyError(parsed.error);
@@ -63,7 +63,7 @@ export async function signup(
         password: errorTree.properties?.password?.errors[0],
         confirmPassword: errorTree.properties?.confirmPassword?.errors[0],
       },
-      supabaseError: "", // only set after Zod passes
+      supabaseError: "",
       values: {
         name: String(raw.name ?? ""),
         email: String(raw.email ?? ""),
@@ -74,15 +74,60 @@ export async function signup(
     };
   }
 
-  // 2) Supabase auth
+  const user = await prisma.user.findUnique({
+    where: {
+      email: parsed.data.email,
+    },
+  });
+  if (user) {
+    return {
+      fieldErrors: {},
+      supabaseError: "User already exists",
+      values: {
+        name: parsed.data.name,
+        email: parsed.data.email,
+        password: parsed.data.password,
+        confirmPassword: parsed.data.confirmPassword,
+      },
+      success: false,
+    };
+  }
+
+  // Supabase auth
   const supabase = await createServerClient();
-  const { error } = await supabase.auth.signUp(parsed.data);
+  const { error } = await supabase.auth.signUp({
+    email: parsed.data.email,
+    password: parsed.data.password,
+  });
 
   // Return Supabase error (e.g., invalid credentials) without redirect
   if (error) {
     return {
       fieldErrors: {},
       supabaseError: error.message,
+      values: {
+        name: parsed.data.name,
+        email: parsed.data.email,
+        password: parsed.data.password,
+        confirmPassword: parsed.data.confirmPassword,
+      },
+      success: false,
+    };
+  }
+
+  try {
+    await prisma.user.create({
+      data: {
+        name: parsed.data.name,
+        email: parsed.data.email,
+        role: "USER",
+      },
+    });
+  } catch (error) {
+    console.error(error);
+    return {
+      fieldErrors: {},
+      supabaseError: "Failed to create user",
       values: {
         name: parsed.data.name,
         email: parsed.data.email,

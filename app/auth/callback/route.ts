@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
-// The client you created from the Server-Side Auth instructions
 import { createServerClient } from "@/libs/supabase/server";
+import { prisma } from "@/libs/prisma";
 
 export async function GET(request: Request) {
   const { searchParams, origin } = new URL(request.url);
@@ -15,11 +15,22 @@ export async function GET(request: Request) {
   if (code) {
     const supabase = await createServerClient();
     const { error, data } = await supabase.auth.exchangeCodeForSession(code);
-    console.log("data");
-    console.log(data);
+
     if (!error) {
       const forwardedHost = request.headers.get("x-forwarded-host"); // original origin before load balancer;
       const isLocalEnv = process.env.NODE_ENV === "development";
+      await prisma.user.upsert({
+        where: {
+          email: data.user.email,
+        },
+        update: {
+          name: data.user.user_metadata.full_name ?? "",
+        },
+        create: {
+          email: data.user.email ?? "",
+          name: data.user.user_metadata.full_name ?? "",
+        },
+      });
       if (isLocalEnv) {
         // we can be sure that there is no load balancer in between, so no need to watch for X-Forwarded-Host
         return NextResponse.redirect(`${origin}${next}`);
