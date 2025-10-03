@@ -1,12 +1,16 @@
 import Link from "next/link";
 import { Button } from "@/components/shadcn/button";
-import LandingHeader from "@/components/header/landing-header";
+import LandingHeader from "@/app/components/landing-header";
 import Heading from "@/components/ui/heading";
+import { createServerClient } from "@/libs/supabase/server";
 
-export default function Home() {
+export default async function Home() {
+  const supabase = await createServerClient();
+  const { data } = await supabase.auth.getUser();
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 dark:from-slate-900 dark:via-slate-800 dark:to-indigo-900">
-      <LandingHeader />
+      <LandingHeader user={data.user} />
 
       {/* Hero Section */}
       <section className="pt-20 pb-16 px-4 sm:px-6 lg:px-8">
