@@ -38,6 +38,7 @@
 		".vercel",
 		"next-env.d.ts",
 		"type/database/supabaseType.ts",
+		"libs/seed.ts"
 	],
 	"enableFiletypes": ["js", "ts", "tsx", "astro", "json", "md", "yml", "yaml"],
 	"dictionaries": ["typescript", "node", "softwareTerms"],
