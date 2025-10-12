@@ -47,7 +47,7 @@ export default function LandingHeader({ user }: { user?: User | null }) {
                   Sign Out
                 </Button>
                 <Button asChild>
-                  <Link href="/private">Get Started</Link>
+                  <Link href="/">Get Started</Link>
                 </Button>
               </>
             ) : (
