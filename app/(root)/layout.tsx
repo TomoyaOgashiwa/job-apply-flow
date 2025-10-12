@@ -1,6 +1,7 @@
 import { createServerClient } from "@/libs/supabase/server";
 import { redirect } from "next/navigation";
 import Header from "./components/header";
+import Sidebar from "./components/sidebar";
 
 export default async function RootLayout({
   children,
@@ -17,7 +18,10 @@ export default async function RootLayout({
   return (
     <div>
       <Header user={data.user} />
-      <main className="w-screen h-screen">{children}</main>
+      <div className="flex gap-4">
+        <Sidebar />
+        <main className="w-screen h-screen">{children}</main>
+      </div>
     </div>
   );
 }
