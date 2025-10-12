@@ -5,10 +5,10 @@ import {
   CardContent,
   CardHeader,
   CardTitle,
-} from "@/components/shadcn/ui/card";
-import { Badge } from "@/components/shadcn/ui/badge";
-import { Progress } from "@/components/shadcn/ui/progress";
-import { Separator } from "@/components/shadcn/ui/separator";
+} from "@/components/shadcn/card";
+import { Badge } from "@/components/shadcn/badge";
+import { Progress } from "@/components/shadcn/progress";
+import { Separator } from "@/components/shadcn/separator";
 import type { DashboardStats as DashboardStatsType } from "../action/get-dashboard-stats";
 import { ApplicationStatus, InterviewStatus } from "@prisma/client";
 

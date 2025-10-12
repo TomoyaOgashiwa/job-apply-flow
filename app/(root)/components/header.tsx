@@ -4,6 +4,8 @@ import { User } from "@supabase/supabase-js";
 import { logout } from "../action/logout";
 import Heading from "@/components/ui/heading";
 import Link from "next/link";
+import { Button } from "@/components/shadcn/button";
+import { Badge } from "@/components/shadcn/badge";
 
 interface Props {
   user: User;
@@ -15,11 +17,23 @@ export default function Header({ user }: Props) {
       <Heading level="h1">
         <Link href="/">Job Apply Flow</Link>
       </Heading>
-      <div className="flex items-center gap-4">
-        <p>{user.email}</p>
-        <button type="button" className="cursor-pointer" onClick={logout}>
+      <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2">
+          <p className="flex items-center justify-center w-8 h-8 rounded-full bg-primary/10 text-primary font-semibold text-sm">
+            {user.email?.[0]?.toUpperCase()}
+          </p>
+          <Badge variant="outline" className="px-3 py-1.5 text-sm">
+            {user.email}
+          </Badge>
+        </div>
+        <Button
+          variant="outline"
+          size="sm"
+          onClick={logout}
+          className="hover:bg-destructive/10 hover:text-destructive hover:border-destructive/50"
+        >
           Sign Out
-        </button>
+        </Button>
       </div>
     </header>
   );
