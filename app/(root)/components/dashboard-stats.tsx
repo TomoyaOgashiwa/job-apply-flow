@@ -10,7 +10,7 @@ import { Badge } from "@/components/shadcn/badge";
 import { Progress } from "@/components/shadcn/progress";
 import { Separator } from "@/components/shadcn/separator";
 import type { DashboardStats as DashboardStatsType } from "../action/get-dashboard-stats";
-import { ApplicationStatus, InterviewStatus } from "@prisma/client";
+import { ApplicationStatus, InterviewStatus } from "@/libs/generated/prisma";
 
 interface DashboardStatsProps {
   stats: DashboardStatsType;
