@@ -2,7 +2,7 @@
 
 import { prisma } from "@/libs/prisma";
 import { createServerClient } from "@/libs/supabase/server";
-import { ApplicationStatus, InterviewStatus } from "@prisma/client";
+import { ApplicationStatus, InterviewStatus } from "@/libs/generated/prisma";
 
 export interface DashboardStats {
   totalApplications: number;

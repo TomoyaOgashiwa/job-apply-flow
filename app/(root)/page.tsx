@@ -1,5 +1,6 @@
 import { getDashboardStats } from "@/app/(root)/action/get-dashboard-stats";
 import { DashboardStats } from "@/app/(root)/components/dashboard-stats";
+import Heading from "@/components/ui/heading";
 import { redirect } from "next/navigation";
 
 /**
@@ -14,9 +15,9 @@ export default async function DashboardPage() {
   }
 
   return (
-    <main className="flex-1 space-y-6 p-6 md:p-8" role="main">
+    <main className="flex-1 space-y-6 p-6 md:p-8">
       <div className="space-y-2">
-        <h1 className="text-3xl font-bold tracking-tight">Dashboard</h1>
+        <Heading level="h2">Dashboard</Heading>
         <p className="text-muted-foreground">
           Overview of your job application progress and statistics
         </p>
