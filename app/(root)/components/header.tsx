@@ -13,7 +13,7 @@ interface Props {
 
 export default function Header({ user }: Props) {
   return (
-    <header className="flex justify-between items-center p-4 sticky bg-[inherit] border-b border-gray-50 shadow-2xl">
+    <header className="flex justify-between items-center p-4 sticky bg-inherit border-b border-gray-50 shadow-2xl">
       <Heading level="h1">
         <Link href="/">Job Apply Flow</Link>
       </Heading>
