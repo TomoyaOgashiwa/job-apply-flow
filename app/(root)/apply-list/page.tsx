@@ -1,4 +1,4 @@
-import { getApplications } from "@/app/application/apply";
+import { getApplications } from "@/app/(root)/action/apply";
 import {
   Card,
   CardContent,

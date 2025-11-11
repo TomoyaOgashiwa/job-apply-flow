@@ -9,7 +9,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/shadcn/card";
-import { ErrorCode } from "@/app/application/type";
+import { ErrorCode } from "@/app/(root)/action/type";
 
 /**
  * Dashboard Page

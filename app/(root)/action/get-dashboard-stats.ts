@@ -3,9 +3,9 @@
 import { prisma } from "@/libs/prisma";
 import { createServerClient } from "@/libs/supabase/server";
 import { ApplicationStatus, InterviewStatus } from "@/libs/generated/prisma";
-import { error, success } from "@/app/application/utils";
-import type { ApiResponse } from "@/app/application/type";
-import { ErrorCode } from "@/app/application/type";
+import { error, success } from "@/app/(root)/action/utils";
+import type { ApiResponse } from "@/app/(root)/action/type";
+import { ErrorCode } from "@/app/(root)/action/type";
 
 export interface DashboardStats {
   totalApplications: number;

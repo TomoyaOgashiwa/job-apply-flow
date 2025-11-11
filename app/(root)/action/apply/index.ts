@@ -1,8 +1,8 @@
 "use server";
 
 import { prisma } from "@/libs/prisma";
-import { withPrisma } from "@/app/application/utils";
-import type { ApiResponse } from "@/app/application/type";
+import { withPrisma } from "@/app/(root)/action/utils";
+import type { ApiResponse } from "@/app/(root)/action/type";
 
 export type ApplicationWithRelations = {
   id: string;
