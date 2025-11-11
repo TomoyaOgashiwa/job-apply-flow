@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { Button } from "@/components/shadcn/button";
 import { User } from "@supabase/supabase-js";
-import { logout } from "../(root)/action/logout";
+import { logout } from "@/app/(root)/action/auth";
 
 export default function LandingHeader({ user }: { user?: User | null }) {
   return (
@@ -11,10 +11,10 @@ export default function LandingHeader({ user }: { user?: User | null }) {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           <div className="flex items-center space-x-2">
-            <div className="w-8 h-8 bg-gradient-to-br from-blue-600 to-purple-600 rounded-lg flex items-center justify-center">
+            <div className="w-8 h-8 bg-linear-to-br from-blue-600 to-purple-600 rounded-lg flex items-center justify-center">
               <span className="text-white font-bold text-sm">JF</span>
             </div>
-            <span className="text-xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+            <span className="text-xl font-bold bg-linear-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
               JobFlow
             </span>
           </div>
