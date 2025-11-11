@@ -51,25 +51,25 @@ export default async function ApplyListPage() {
           </CardContent>
         </Card>
       ) : (
-        <div className="grid gap-4">
+        <ul className="grid gap-4">
           {applications.map((application) => (
-            <Card key={application.id}>
-              <CardHeader>
-                <div className="flex items-start justify-between">
-                  <div>
-                    <CardTitle>{application.company.name}</CardTitle>
-                    <CardDescription>{application.job_title}</CardDescription>
+            <li key={application.id}>
+              <Card>
+                <CardHeader>
+                  <div className="flex items-start justify-between">
+                    <div>
+                      <CardTitle>{application.company.name}</CardTitle>
+                      <CardDescription>{application.job_title}</CardDescription>
+                    </div>
+                    <div className="flex gap-2">
+                      <Badge variant="outline">{application.status}</Badge>
+                      <Badge variant="secondary">
+                        {application.interview_status}
+                      </Badge>
+                    </div>
                   </div>
-                  <div className="flex gap-2">
-                    <Badge variant="outline">{application.status}</Badge>
-                    <Badge variant="secondary">
-                      {application.interview_status}
-                    </Badge>
-                  </div>
-                </div>
-              </CardHeader>
-              <CardContent>
-                <div className="grid grid-cols-2 gap-4 text-sm">
+                </CardHeader>
+                <CardContent className="grid grid-cols-2 gap-4 text-sm">
                   <div>
                     <span className="font-medium">Applied:</span>{" "}
                     {new Date(application.created_at).toLocaleDateString()}
@@ -90,11 +90,11 @@ export default async function ApplyListPage() {
                     <span className="font-medium">Level:</span>{" "}
                     {application.position_level}
                   </div>
-                </div>
-              </CardContent>
-            </Card>
+                </CardContent>
+              </Card>
+            </li>
           ))}
-        </div>
+        </ul>
       )}
     </div>
   );

@@ -1,7 +1,7 @@
 "use client";
 
 import { User } from "@supabase/supabase-js";
-import { logout } from "../action/logout";
+import { logout } from "../action/auth";
 import Heading from "@/components/ui/heading";
 import Link from "next/link";
 import { Button } from "@/components/shadcn/button";

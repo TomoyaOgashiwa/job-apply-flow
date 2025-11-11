@@ -7,10 +7,6 @@ import {
   ChevronRight,
   LayoutDashboard,
   FileText,
-  Building2,
-  FileUser,
-  Calendar,
-  Settings,
 } from "lucide-react";
 import { cn } from "@/libs/utils";
 
@@ -31,26 +27,26 @@ const navigationItems: NavigationItem[] = [
     href: "/apply-list",
     icon: FileText,
   },
-  {
-    name: "Companies",
-    href: "/companies",
-    icon: Building2,
-  },
-  {
-    name: "Resumes",
-    href: "/resumes",
-    icon: FileUser,
-  },
-  {
-    name: "Interviews",
-    href: "/interviews",
-    icon: Calendar,
-  },
-  {
-    name: "Settings",
-    href: "/settings",
-    icon: Settings,
-  },
+  // {
+  //   name: "Companies",
+  //   href: "/companies",
+  //   icon: Building2,
+  // },
+  // {
+  //   name: "Resumes",
+  //   href: "/resumes",
+  //   icon: FileUser,
+  // },
+  // {
+  //   name: "Interviews",
+  //   href: "/interviews",
+  //   icon: Calendar,
+  // },
+  // {
+  //   name: "Settings",
+  //   href: "/settings",
+  //   icon: Settings,
+  // },
 ];
 
 export default function Sidebar() {

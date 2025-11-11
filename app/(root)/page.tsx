@@ -1,4 +1,4 @@
-import { getDashboardStats } from "@/app/(root)/action/get-dashboard-stats";
+import { getDashboardStats } from "@/app/(root)/action/dashboard";
 import { DashboardStats } from "@/app/(root)/components/dashboard-stats";
 import Heading from "@/components/ui/heading";
 import { redirect } from "next/navigation";
