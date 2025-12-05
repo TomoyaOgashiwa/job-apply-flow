@@ -6,7 +6,9 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/shadcn/card";
-import { Badge } from "@/components/shadcn/badge";
+import Heading from "@/components/ui/heading";
+import ApplyList from "./components/apply-list";
+import ApplyHeader from "./components/apply-header";
 
 export default async function ApplyListPage() {
   const response = await getApplications();
@@ -37,12 +39,9 @@ export default async function ApplyListPage() {
 
   return (
     <div className="container mx-auto p-6">
-      <div className="mb-6">
-        <h1 className="text-3xl font-bold">Application List</h1>
-        <p className="text-muted-foreground">
-          Total applications: {applications.length}
-        </p>
-      </div>
+      <Heading className="pb-4" level="h2">
+        Application List
+      </Heading>
 
       {applications.length === 0 ? (
         <Card>
@@ -51,50 +50,10 @@ export default async function ApplyListPage() {
           </CardContent>
         </Card>
       ) : (
-        <ul className="grid gap-4">
-          {applications.map((application) => (
-            <li key={application.id}>
-              <Card>
-                <CardHeader>
-                  <div className="flex items-start justify-between">
-                    <div>
-                      <CardTitle>{application.company.name}</CardTitle>
-                      <CardDescription>{application.job_title}</CardDescription>
-                    </div>
-                    <div className="flex gap-2">
-                      <Badge variant="outline">{application.status}</Badge>
-                      <Badge variant="secondary">
-                        {application.interview_status}
-                      </Badge>
-                    </div>
-                  </div>
-                </CardHeader>
-                <CardContent className="grid grid-cols-2 gap-4 text-sm">
-                  <div>
-                    <span className="font-medium">Applied:</span>{" "}
-                    {new Date(application.created_at).toLocaleDateString()}
-                  </div>
-                  {application.interview.length > 0 && (
-                    <div>
-                      <span className="font-medium">Interview:</span>{" "}
-                      {new Date(
-                        application.interview[0].interview_date,
-                      ).toLocaleDateString()}
-                    </div>
-                  )}
-                  <div>
-                    <span className="font-medium">Type:</span>{" "}
-                    {application.job_type}
-                  </div>
-                  <div>
-                    <span className="font-medium">Level:</span>{" "}
-                    {application.position_level}
-                  </div>
-                </CardContent>
-              </Card>
-            </li>
-          ))}
-        </ul>
+        <div>
+          <ApplyHeader count={applications.length} />
+          <ApplyList applications={applications} />
+        </div>
       )}
     </div>
   );
