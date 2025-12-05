@@ -22,7 +22,8 @@
 		"javascript",
 		"json",
 		"treeifyError",
-		"Postgrest"
+		"Postgrest",
+		"cmdk"
 	],
 	"ignorePaths": [
 		"node_modules",
