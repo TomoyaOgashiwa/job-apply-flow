@@ -1,4 +1,4 @@
-import { PrismaClient } from "@prisma/client";
+import { PrismaClient } from "./generated/prisma";
 
 const prisma = new PrismaClient();
 
@@ -10,7 +10,9 @@ async function main() {
   await prisma.application.deleteMany();
   await prisma.resume.deleteMany();
   await prisma.company.deleteMany();
-  // await prisma.user.deleteMany();
+  await prisma.user.deleteMany();
+
+  console.log("✅ Deleted all data");
 
   // Create users
   const users = await Promise.all([

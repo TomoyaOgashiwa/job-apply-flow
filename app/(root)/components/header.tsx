@@ -1,7 +1,7 @@
 "use client";
 
 import { User } from "@supabase/supabase-js";
-import { logout } from "../action/logout";
+import { logout } from "../action/auth";
 import Heading from "@/components/ui/heading";
 import Link from "next/link";
 import { Button } from "@/components/shadcn/button";
@@ -13,7 +13,7 @@ interface Props {
 
 export default function Header({ user }: Props) {
   return (
-    <header className="flex justify-between items-center p-4 sticky bg-[inherit] border-b border-gray-50 shadow-2xl">
+    <header className="flex justify-between items-center p-4 sticky bg-inherit border-b border-gray-50 shadow-2xl">
       <Heading level="h1">
         <Link href="/">Job Apply Flow</Link>
       </Heading>

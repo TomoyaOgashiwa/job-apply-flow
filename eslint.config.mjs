@@ -14,7 +14,14 @@ const compat = new FlatCompat({
 
 export default defineConfig([
   // ignores
-  globalIgnores(["dist", "node_modules", ".next", "next-env.d.ts"]),
+  globalIgnores([
+    "dist/",
+    "node_modules/",
+    ".next/",
+    "next-env.d.ts",
+    "supabase/",
+    "libs/generated/",
+  ]),
 
   // JS + TS (flat) presets
   js.configs.recommended,
